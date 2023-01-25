@@ -1,0 +1,99 @@
+trigger:
+  - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: "-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)"
+
+steps:
+  - task: Cache@2
+    inputs:
+      key: 'maven | "$(Agent.OS)" | **/pom.xml'
+      restoreKeys: |
+        maven | "$(Agent.OS)"
+        maven
+      path: $(MAVEN_CACHE_FOLDER)
+    displayName: Cache Maven local repo
+
+  # 主機環境設定
+  - task: Bash@3
+    inputs:
+      targetType: "inline"
+      script: |
+        sudo -- sh -c "echo '192.168.18.30    oauth-openshift.apps.ocp.iisi.test' >> /etc/hosts"
+        sudo -- sh -c "echo '192.168.18.30   api.ocp.iisi.test' >> /etc/hosts" 
+        sudo -- sh -c "echo '192.168.18.30    nexus2-d210641.apps.ocp.iisi.test' >> /etc/hosts" 
+        sudo -- sh -c "echo '{\"insecure-registries\" : [\"default-route-openshift-image-registry.apps.ocp.iisi.test\"]}' > /etc/docker/daemon.json"
+
+        cat /etc/hosts
+        echo '目前路徑'
+        pwd
+         
+        export BUILD_NUMBER=$(Build.BuildNumber)
+        echo 'build 編號  #'${BUILD_NUMBER}
+
+        timedatectl
+        echo 'set timezone to Asia/Taipei'
+        sudo timedatectl set-timezone Asia/Taipei
+        timedatectl
+
+        echo '查看docker daemon'
+        cat /etc/docker/daemon.json
+        sudo systemctl restart docker
+        sudo systemctl daemon-reload
+    displayName: "set env"
+
+  - task: Maven@3
+    displayName: 'compileing'
+    inputs:
+      mavenPomFile: '$(Build.SourcesDirectory)/pom.xml'
+      mavenDirectory: '$(Build.SourcesDirectory)'
+      goals: 'package'
+      options: '   -DskipTests '
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '8'
+      mavenVersionOption: 'Default'
+      mavenOptions: '-Xmx3072m  $(MAVEN_OPTS)'
+      mavenAuthenticateFeed: true
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
+      checkStyleRunAnalysis: false # replaced by sonarqube
+      pmdRunAnalysis: false  
+      findBugsRunAnalysis: false  
+      javadoc: false  
+  - task: Docker@2
+    continueOnError: true    
+    inputs:
+      command: 'buildAndPush'
+      containerRegistry: 'D210641-registry'
+      repository: 'demo'
+      Dockerfile: '$(System.DefaultWorkingDirectory)/Dockerfile'
+      tags: 'latest'
+    displayName: 'uploading demo images to registry'
+
+  # Install oc so that it can be used within a 'script' or bash 'task'
+  - task: oc-setup@2
+    inputs:
+       openshiftService: 'ocp-4.11'
+       version: '4.9.28'
+    continueOnError: true    
+
+
+  # A script task making use of 'oc'
+  - script: |
+      oc -n d210641 get pods
+      oc -n d210641 get deployment
+    displayName: 'use oc cli'
+    continueOnError: true  
+
+  - script: |
+      oc -n d210641 import-image d210641.azurecr.io/demo:latest --from="d210641.azurecr.io/demo:latest" --confirm --reference-policy=local
+      oc tag image-registry.openshift-image-registry.svc:5000/d210641/demo:latest  d210641/demo:$(Build.BuildNumber)
+      oc -n d210641 apply -f k8s-yaml/deploy.yaml
+    displayName: 'deployment lab by oc '
+    continueOnError: true 

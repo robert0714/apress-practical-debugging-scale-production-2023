@@ -1,0 +1,182 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name:  demo
+  labels:
+    app:  demo
+    version: m1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  demo
+  template:
+    metadata:
+      labels:
+        app:  demo
+        version: m1
+      annotations:
+        prometheus.io/port: '8080'
+        prometheus.io/scheme: http
+        prometheus.io/scrape: 'true'
+        sidecar.istio.io/inject: 'true'
+    spec:
+      volumes:
+        - name: dev-cm-demo
+          configMap:
+            name: dev-cm-demo
+            defaultMode: 420
+        - name: dev-pvc-demo
+          persistentVolumeClaim:
+            claimName: demo-data
+      securityContext:
+        runAsUser: 1001
+        runAsNonRoot: true
+      containers:
+      - name:  demo 
+        image:  demo:latest
+#        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: dev-cm-demo
+            mountPath: /home/psadm/anthos/cfg/demo
+          - name: dev-pvc-demo
+            mountPath: /home/psadm/anthos/log
+        ports:
+            - containerPort: 9990
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP     
+        env:
+        - name: MEMORY_REQUEST
+          valueFrom:
+            resourceFieldRef:
+              containerName:  demo
+              resource: requests.memory
+        - name: MEMORY_LIMIT
+          valueFrom:
+            resourceFieldRef:
+              containerName:  demo
+              resource: limits.memory 
+        - name: JAVA_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: dev-cm-demo
+              key: JAVA_OPTS
+        resources:
+          requests: 
+            memory: 1Gi
+            cpu: 500m
+          limits: 
+            memory: 1536Mi
+            cpu: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: demo
+    service: demo
+  name: demo
+spec: 
+  ports:
+    - name: tcp-remote
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: tcp-9990
+      protocol: TCP
+      port: 9990
+      targetPort: 9990
+  selector:
+    app: demo
+  sessionAffinity: None
+  type: ClusterIP
+---  
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: demo-data
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-cm-demo
+data:
+  SPRING_PROFILES_ACTIVE: dev 
+  ELASTIC_APM_ENABLED: "false"
+  JAVA_OPTS: |
+    -Xms1G 
+    -Xmx1536m 
+#    -Xdebug 
+#    -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+
+
+  logback-wildfly.xml: |
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <configuration>
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <FileNamePattern>/home/psadm/anthos/log/demo/rm.%d{yyyy-MM-dd}.${hostname}.%i.log.gz</FileNamePattern>
+                <maxFileSize>100MB</maxFileSize>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <layout class="com.cht.commons.logging.logback.ShrinkingPatternLayout">
+                    <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %C{0}.%L %m%n</pattern>
+                </layout>
+            </encoder>
+        </appender>
+        <appender name="ASYNC.FILE" class="ch.qos.logback.classic.AsyncAppender">
+            <queueSize>100000</queueSize>
+            <discardingThreshold>2</discardingThreshold>
+            <includeCallerData>true</includeCallerData>
+            <neverBlock>true</neverBlock>
+            <appender-ref ref="FILE" />
+        </appender>
+        <appender name="ENTRANCE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <FileNamePattern>/home/psadm/anthos/log/demo/rm.entrance.%d{yyyy-MM-dd}.${hostname}.%i.log.gz</FileNamePattern>
+                <maxFileSize>100MB</maxFileSize>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <layout class="com.cht.commons.logging.logback.ShrinkingPatternLayout">
+                    <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %m%n</Pattern>
+                </layout>
+            </encoder>
+        </appender>
+        <appender name="ASYNC.ENTRANCE" class="ch.qos.logback.classic.AsyncAppender">
+            <queueSize>100000</queueSize>
+            <discardingThreshold>2</discardingThreshold>
+            <includeCallerData>true</includeCallerData>
+            <neverBlock>true</neverBlock>
+            <appender-ref ref="ENTRANCE" />
+        </appender>
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %C{0}.%L %msg%n</pattern>
+            </encoder>
+        </appender>
+        <logger name="com.cht" level="TRACE">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ASYNC.FILE" />
+        </logger>
+        <logger name="com.cht.commons.persistence.impl.ChtDummyEntityTransactionImpl" level="OFF">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ASYNC.FILE" />
+        </logger>
+        <logger name="org" level="DEBUG">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ASYNC.FILE" />
+        </logger>
+        <logger name="com.cht.resource.core.ResourceManagementServiceImpl" level="INFO">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ASYNC.demo_ENTRANCE" />
+        </logger>
+    </configuration>
