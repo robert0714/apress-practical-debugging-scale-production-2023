@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # install python3 and pip3
-sudo apt install python3 python3-pip python3-dev curl wget jq unzip -y
+sudo apt install python3 python3-pip python3-dev curl wget jq unzip  docker-compose -y
 
 # install some pip3 modules
-pip3 install docker-compose
+#   install docker-compose v 2.x
+sudo curl -fL https://raw.githubusercontent.com/docker/compose-switch/master/install_on_linux.sh | sh
 
 # install localstack
-python3 -m pip install localstack
+#python3 -m pip install localstack
 
 
 # install awscli

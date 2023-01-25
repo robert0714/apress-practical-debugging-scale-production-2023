@@ -74,4 +74,5 @@ Figure 7-1 IntelliJ/IDEA run configuration remote debug settings
 Figure 7-2 Debugging a serverless Lambda function in IntelliJ/IDEA
 
 ## Debugging JVM lambdas in localstack
-https://docs.localstack.cloud/user-guide/tools/lambda-tools/debugging/
+* reference: https://docs.localstack.cloud/user-guide/tools/lambda-tools/debugging/
+* You can not use vagrant to process remote debugging!
