@@ -9,12 +9,12 @@ services:
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
     environment:
       - DEBUG=${DEBUG-}
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
       - DOCKER_HOST=unix:///var/run/docker.sock
+      # https://docs.localstack.cloud/references/configuration/#lambda-new--asf
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
       - LAMBDA_REMOTE_DOCKER=0
       - LAMBDA_JAVA_OPTS='-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005'
       - LAMBDA_DOCKER_FLAGS='-p 127.0.0.1:5005:5005 '
-      # - LAMBDA_DOCKER_FLAGS='-p 192.168.56.101:5005:5005 '
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
