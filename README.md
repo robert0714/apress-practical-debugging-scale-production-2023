@@ -1,5 +1,5 @@
 # Practical Debugging at Scale
-## Youtube 
+## [Youtube](https://www.youtube.com/playlist?list=PL8GhfcywW9YM3OsfxnaxAci6dJgkuOQWn) 
 * 👉[Practical Debugging at Scale: Chapter 1 Introduction - Debugger Basics in IntelliJ/IDEA - Part 1](https://www.youtube.com/watch?v=A919j_5qE0k)
     * [00:00](https://www.youtube.com/watch?v=A919j_5qE0k&list=PL8GhfcywW9YM3OsfxnaxAci6dJgkuOQWn&index=1&t=0s) Introduction
     * [01:04](https://www.youtube.com/watch?v=A919j_5qE0k&list=PL8GhfcywW9YM3OsfxnaxAci6dJgkuOQWn&index=1&t=64s) Focus - IDE Debugging
@@ -40,6 +40,24 @@
     * [15:50](https://www.youtube.com/watch?v=eXRqKqSp7x0&t=950s) Caller Filter
     * [16:54](https://www.youtube.com/watch?v=eXRqKqSp7x0&t=1014s) Final Word
 
+* 👉[Part 5 - Debugging Streams and Collections](https://youtu.be/fok4Icxsl2k) - [Transcript](https://dev.to/codenameone/debugging-streams-and-collections-1ac4)
+* 👉[Part 6 - Watch Area and Renderers](https://www.youtube.com/watch?v=oaUf8KXHsd0&list=PL8GhfcywW9YM3OsfxnaxAci6dJgkuOQWn) - [Transcript](https://dev.to/codenameone/watch-area-and-renderers-2mi4)
+* 👉[Part 7 - Debugging Threads and Asynchronous Code](https://youtu.be/dFOFOEg2W4k) - [Transcript](https://dev.to/codenameone/debugging-threads-and-asynchronous-code-2n8a)
+* 👉[Part 8 - Memory Debugging - a Deep Level of Insight](https://youtu.be/dFOFOEg2W4k) - [Transcript](https://dev.to/codenameone/memory-debugging-a-deep-level-of-insight-86l)
+    * [00:00](https://www.youtube.com/watch?v=dFOFOEg2W4k&t=0s) Introduction 
+    * [00:55](https://www.youtube.com/watch?v=dFOFOEg2W4k&t=55s) Memory View
+    * [01:37](https://www.youtube.com/watch?v=dFOFOEg2W4k&t=97s) Diff
+    * [02:49](https://www.youtube.com/watch?v=dFOFOEg2W4k&t=169s) Update on Stop
+    * [03:17](https://www.youtube.com/watch?v=dFOFOEg2W4k&t=197s) Track New
+    * [05:15](https://www.youtube.com/watch?v=dFOFOEg2W4k&t=315s) Between Breakpoints
+    * [05:57](https://www.youtube.com/watch?v=dFOFOEg2W4k&t=357s) Final Word
+        
+* 👉[Part 9 - Remote Debugging Dangers and Pitfalls](https://www.youtube.com/watch?v=ImOmu4GHOls) - [Transcript](https://dev.to/codenameone/remote-debugging-dangers-and-pitfalls-4f3g)
+    * [00:00](https://www.youtube.com/watch?v=ImOmu4GHOls&t=0s) Introduction
+    * [00:31](https://www.youtube.com/watch?v=ImOmu4GHOls&t=31s) Connection
+    * [06:04](https://www.youtube.com/watch?v=ImOmu4GHOls&t=364s) Tunnelling Over SSL
+    * [07:44](https://www.youtube.com/watch?v=ImOmu4GHOls&t=464s) Danger
+    * [11:13](https://www.youtube.com/watch?v=ImOmu4GHOls&t=673s) Final Word 
 ## Debugging sample code
 * [PrimeMain](https://github.com/shai-almog/PrimeMain)
 * [prime-app.js](https://gist.github.com/shai-almog/167a34571b0fae6eeed56742c44895cd)
