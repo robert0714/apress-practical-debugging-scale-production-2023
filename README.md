@@ -1,4 +1,16 @@
 # Practical Debugging at Scale
+## [Article Series - Practical Debugging as Scale](https://debugagent.com/series/debugging-course)
+* [Part 1 - Debug Like a Senior Developer](https://debugagent.com/debug-like-a-senior-developer)      
+* [Part 2 - Debugging Program Control Flow](https://debugagent.com/debugging-program-control-flow) 
+* [Part 3 - Watch And Evaluate](https://debugagent.com/watch-and-evaluate)     
+* [Part 4 - The Massive Hidden Power of Breakpoints](https://debugagent.com/the-massive-hidden-power-of-breakpoints)  
+* [Part 5 - Debugging Streams and Collections](https://debugagent.com/debugging-streams-and-collections)
+* [Part 6 - Watch Area and Renderers](https://debugagent.com/watch-area-and-renderers)
+* [Part 7 - Debugging Threads and Asynchronous Code](https://debugagent.com/debugging-threads-and-asynchronous-code)
+* [Part 8 - Memory Debugging - a Deep Level of Insight](https://debugagent.com/memory-debugging-a-deep-level-of-insight)         
+* [Part 9 - Remote Debugging Dangers and Pitfalls](https://debugagent.com/remote-debugging-dangers-and-pitfalls) 
+
+
 ## [Youtube](https://www.youtube.com/playlist?list=PL8GhfcywW9YM3OsfxnaxAci6dJgkuOQWn) 
 * 👉[Part 1 - Debug Like a Senior Developer](https://www.youtube.com/watch?v=A919j_5qE0k) - [Transcript](https://dev.to/codenameone/debug-like-a-senior-developer-g6m) 
     * [00:00](https://www.youtube.com/watch?v=A919j_5qE0k&list=PL8GhfcywW9YM3OsfxnaxAci6dJgkuOQWn&index=1&t=0s) Introduction
