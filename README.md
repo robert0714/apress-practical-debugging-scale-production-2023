@@ -53,6 +53,11 @@
     * [16:54](https://www.youtube.com/watch?v=eXRqKqSp7x0&t=1014s) Final Word
 
 * 👉[Part 5 - Debugging Streams and Collections](https://youtu.be/fok4Icxsl2k) - [Transcript](https://dev.to/codenameone/debugging-streams-and-collections-1ac4)
+    * [00:00](https://www.youtube.com/watch?v=fok4Icxsl2k&t=0s) Introduction 
+    * [00:34](https://www.youtube.com/watch?v=fok4Icxsl2k&t=34s) Filtering
+    * [02:12](https://www.youtube.com/watch?v=fok4Icxsl2k&t=132s) Conditional Breakpoint on Loop
+    * [04:54](https://www.youtube.com/watch?v=fok4Icxsl2k&t=294s) Stream Debugger
+    * [06:45](https://www.youtube.com/watch?v=fok4Icxsl2k&t=405s) Final Word
 * 👉[Part 6 - Watch Area and Renderers](https://www.youtube.com/watch?v=oaUf8KXHsd0&list=PL8GhfcywW9YM3OsfxnaxAci6dJgkuOQWn) - [Transcript](https://dev.to/codenameone/watch-area-and-renderers-2mi4)
 * 👉[Part 7 - Debugging Threads and Asynchronous Code](https://youtu.be/dFOFOEg2W4k) - [Transcript](https://dev.to/codenameone/debugging-threads-and-asynchronous-code-2n8a)
 * 👉[Part 8 - Memory Debugging - a Deep Level of Insight](https://youtu.be/dFOFOEg2W4k) - [Transcript](https://dev.to/codenameone/memory-debugging-a-deep-level-of-insight-86l)
