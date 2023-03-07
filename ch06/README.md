@@ -138,10 +138,14 @@ Figure 6-3 Remote debugging run configuration in IntelliJ/IDEA
   * First use debug mode, [you need to configure](https://code.visualstudio.com/docs/java/java-debugging#_configure):   
    ![image.png](https://code.visualstudio.com/assets/docs/java/java-debugging/run-debug-button.png)
     * [Basic debug operations](./video-record/vscode/01-VCode_debug-basic.mp4)
+      <video src="./video-record/vscode/01-VCode_debug-basic.mp4" controls /> 
   * [Remote Debug parameters](https://code.visualstudio.com/docs/java/java-debugging#_attach) 
     * [remote-debug config](./video-record/vscode/02-VCode_remote_debug_config.mp4)
+      <video src="./video-record/vscode/02-VCode_remote_debug_config.mp4" controls /> 
     * [remote-debug basic operations](./video-record/vscode/03-VCode_remote_debug_01.mp4)
+      <video src="./video-record/vscode/03-VCode_remote_debug_01.mp4" controls /> 
     * [remote-debug basic operations on K8s](./video-record/vscode/04-VCode_k8s_remote_debug.mp4)
+      <video src="./video-record/vscode/04-VCode_k8s_remote_debug.mp4" controls /> 
 
 # [Anthos sandbox - cloud shell](https://cloud.google.com/shell/docs/launching-cloud-shell-editor)
 * [configure JDK](https://code.visualstudio.com/docs/java/java-project#_configure-runtime-for-projects) - settings.json
@@ -162,12 +166,17 @@ Figure 6-3 Remote debugging run configuration in IntelliJ/IDEA
     ]
     ```
    * [Basic debug operations](./video-record/cloud-shell/01-cloud-shell_jdk_config_01.mp4)
+     <video src="./video-record/cloud-shell/01-cloud-shell_jdk_config_01.mp4" controls /> 
    * [configure JDK](./video-record/cloud-shell/02-cloud-shell_jdk_config_02.mp4)
+     <video src="./video-record/cloud-shell/02-cloud-shell_jdk_config_02.mp4" controls /> 
  
 * First use debug mode, [you need to configure](https://cloud.google.com/shell/docs/debugging)
   * [Basic debug operations](./video-record/cloud-shell/03-cloud-shell_basic_debug.mp4)
+    <video src="./video-record/cloud-shell/03-cloud-shell_basic_debug.mp4" controls /> 
   * [remote-debug config & basic operations](./video-record/cloud-shell/04-cloud-shell_remote_debug.mp4)
+    <video src="./video-record/cloud-shell/04-cloud-shell_remote_debug.mp4" controls /> 
   * [remote-debug basic operations on K8s](./video-record/cloud-shell/05-cloud-shell_remote_debug_k8s.mp4)
+    <video src="./video-record/cloud-shell/05-cloud-shell_remote_debug_k8s.mp4" controls /> 
 
 
 #### [IntelliJ IDEA Community Edition Doc](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html#examining-code)
@@ -175,11 +184,16 @@ Figure 6-3 Remote debugging run configuration in IntelliJ/IDEA
   * First use debug mode, [you need to configure](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html#running-program):   
     * [basic config](https://www.jetbrains.com/help/idea/tutorial-remote-debug.html#debugger_rc):
       * [basic config record](./video-record/idea64_community/01-idea64_community_basic_config.mp4)
+        <video src="./video-record/idea64_community/01-idea64_community_basic_config.mp4" controls /> 
       * [basic debug](./video-record/idea64_community/02-idea64_community_basic_debug-stream.mp4)
+        <video src="./video-record/idea64_community/02-idea64_community_basic_debug-stream.mp4" controls /> 
   * [Remote Debug Method](https://www.jetbrains.com/help/idea/tutorial-remote-debug.html)    
     * [remote-debug config](./video-record/idea64_community/03-idea64_community_remote_debug-config.mp4)
+    <video src="./video-record/idea64_community/03-idea64_community_remote_debug-config.mp4" controls /> 
     * [remote-debug basic operations](./video-record/idea64_community/04-idea64_community_remote_debug-basic_op.mp4)
+    <video src="./video-record/idea64_community/04-idea64_community_remote_debug-basic_op.mp4" controls /> 
     * [remote-debug basic operations on k8s](./video-record/idea64_community/05-idea64_community_remote_debug-k8s.mp4)
+    <video src="./video-record/idea64_community/05-idea64_community_remote_debug-k8s.mp4" controls /> 
 
 # Koolkits
 ## Introduction
