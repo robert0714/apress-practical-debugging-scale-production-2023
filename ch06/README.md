@@ -95,6 +95,92 @@ Figure 6-3 Remote debugging run configuration in IntelliJ/IDEA
 * Massive Depth
 * Barebone Container
 
+
+
+### [VS Code JAVA ENV](https://code.visualstudio.com/docs/java/java-tutorial#_setting-up-vs-code-for-java-development)
+* [Installation](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix)
+  ```
+  code --install-extension myextension.vsix
+  ```
+* [Configure JDK](https://code.visualstudio.com/docs/java/java-tutorial#_installing-and-setting-up-a-java-development-kit-jdk)
+* [edit sample](https://code.visualstudio.com/docs/java/java-tutorial#_editing-source-code)
+* [debug demo](https://code.visualstudio.com/docs/java/java-tutorial#_running-and-debugging-your-program)
+## VS Code  install Extensions
+* [Language Support for Java™ by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
+![image.png](./imgs/ext01.png) 
+* [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug) 
+* [Test Runner for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test)
+* [Maven for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-dependency)
+* [Project Manager for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-dependency)
+* [Server Connector for wildfly](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-server-connector)
+* [Community Server Connectors for tomcat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-community-server-connector)
+
+#### VS Code Debug
+
+* [Official Documentation](https://code.visualstudio.com/docs/java/java-debugging)   
+  * [configure JDK](https://code.visualstudio.com/docs/java/java-project#_configure-runtime-for-projects) - settings.json
+   ```json
+   "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "/usr/lib/jvm/java-1.8.0-openjdk-amd64",
+            "javadoc": "https://docs.oracle.com/javase/8/docs/api/",
+            "default": true
+        },
+        {
+            "name": "JavaSE-11",
+            "path": "/usr/lib/jvm/java-1.11.0-openjdk-amd64",
+            "sources": "/usr/lib/jvm/java-1.11.0-openjdk-amd64/lib/src.zip",
+            "javadoc": "https://docs.oracle.com/en/java/javase/11/docs/api"
+        }
+    ]
+    ```
+  * First use debug mode, [you need to configure](https://code.visualstudio.com/docs/java/java-debugging#_configure):   
+   ![image.png](https://code.visualstudio.com/assets/docs/java/java-debugging/run-debug-button.png)
+    * [Basic debug operations](./video-record/vscode/01-VCode_debug-basic.mp4)
+  * [Remote Debug parameters](https://code.visualstudio.com/docs/java/java-debugging#_attach) 
+    * [remote-debug config](./video-record/vscode/02-VCode_remote_debug_config.mp4)
+    * [remote-debug basic operations](./video-record/vscode/03-VCode_remote_debug_01.mp4)
+    * [remote-debug basic operations on K8s](./video-record/vscode/04-VCode_k8s_remote_debug.mp4)
+
+# [Anthos sandbox - cloud shell](https://cloud.google.com/shell/docs/launching-cloud-shell-editor)
+* [configure JDK](https://code.visualstudio.com/docs/java/java-project#_configure-runtime-for-projects) - settings.json
+   ```json
+   "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "/usr/lib/jvm/java-1.8.0-openjdk-amd64",
+            "javadoc": "https://docs.oracle.com/javase/8/docs/api/",
+            "default": true
+        },
+        {
+            "name": "JavaSE-11",
+            "path": "/usr/lib/jvm/java-1.11.0-openjdk-amd64",
+            "sources": "/usr/lib/jvm/java-1.11.0-openjdk-amd64/lib/src.zip",
+            "javadoc": "https://docs.oracle.com/en/java/javase/11/docs/api"
+        }
+    ]
+    ```
+   * [Basic debug operations](./video-record/cloud-shell/01-cloud-shell_jdk_config_01.mp4)
+   * [configure JDK](./video-record/cloud-shell/02-cloud-shell_jdk_config_02.mp4)
+ 
+* First use debug mode, [you need to configure](https://cloud.google.com/shell/docs/debugging)
+  * [Basic debug operations](./video-record/cloud-shell/03-cloud-shell_basic_debug.mp4)
+  * [remote-debug config & basic operations](./video-record/cloud-shell/04-cloud-shell_remote_debug.mp4)
+  * [remote-debug basic operations on K8s](./video-record/cloud-shell/05-cloud-shell_remote_debug_k8s.mp4)
+
+
+#### [IntelliJ IDEA Community Edition Doc](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html#examining-code)
+   
+  * First use debug mode, [you need to configure](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html#running-program):   
+    * [basic config](https://www.jetbrains.com/help/idea/tutorial-remote-debug.html#debugger_rc):
+      * [basic config record](./video-record/idea64_community/01-idea64_community_basic_config.mp4)
+      * [basic debug](./video-record/idea64_community/02-idea64_community_basic_debug-stream.mp4)
+  * [Remote Debug Method](https://www.jetbrains.com/help/idea/tutorial-remote-debug.html)    
+    * [remote-debug config](./video-record/idea64_community/03-idea64_community_remote_debug-config.mp4)
+    * [remote-debug basic operations](./video-record/idea64_community/04-idea64_community_remote_debug-basic_op.mp4)
+    * [remote-debug basic operations on k8s](./video-record/idea64_community/05-idea64_community_remote_debug-k8s.mp4)
+
 # Koolkits
 ## Introduction
 * https://learn.microsoft.com/zh-tw/events/jdconf-2022/debugging-at-scale-in-production-deep-into-your-containers-with-kubectl-debug-koolkits-and-co
